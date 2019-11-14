@@ -20,6 +20,7 @@ public class DataUtil {
         for (int i = 0; i< length ; i++){
             array[i] = (int) (Math.random() * 100);
         }
+//        array = new int[]{24,40,65,47,1,87,79,13,49,90,67,62,59,74,10,41,28,58,38,12};
         return array;
     }
 }

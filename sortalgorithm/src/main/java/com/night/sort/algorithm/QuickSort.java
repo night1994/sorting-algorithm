@@ -11,46 +11,56 @@ import com.night.sort.util.DataUtil;
 public class QuickSort {
 
 
-    public static void quick(int[] array , int low, int high){
+    public static void quick(int[] array, int low, int high) {
 
-        if(high <= 0 || low >= array.length -1 ){
-            return ;
-        }
-        //获取参考数
-        int temp = array[low];
-        int low_init_index = low;
-        int high_init_index = high;
-        low = low + 1;
-        int begin_low = low;
-        int begin_high = high;
-        while(low < high){
-            //从后往前找第一个比参考数小的
-            while(low < high && array[high] > temp){
-                high--;
-            }
-            //从前往后找第一个比参考数大的
-            while (low < high && array[low] < temp){
-                low ++;
-            }
+        //起始位置与终止位置 一致  停止
+       if(low >= high){
+           return ;
+       }
+       //第一个数字作为参考数
+       int temp = array[low];
+       //记录初始开始位置
+        int low_index = low;
+        //记录初始结束位置
+        int high_index = high;
+        //记录参考数移动坑位
+        int move_index = low;
+       while(low < high){
+            //从高位开始找出第一个小于参考数的数
+           while (low < high && array[high] >= temp){
+               high--;
+           }
+           //从低位开始找出第一个大于参考数的数
+           while (low < high && array[low] <= temp){
+               low++;
+           }
+           //下标未交叉 交换高位填坑 低位填高位 低位变为新坑
             if(low < high){
-                array[low_init_index] = array[high];
+                array[move_index] = array[high];
                 array[high] = array[low];
-                low_init_index = low;
                 array[low] = temp;
-                low++;
-                high--;
+                move_index = low;
             }
-        }
-        System.out.println("一次组--->"+ JSON.toJSONString(array));
-        quick(array,begin_low ,low - 1);
-        quick(array,low + 1,begin_high );
 
+            //下标交叉 判断交叉点是否比参考数大  比参考数大 交换位置
+            if(low == high && temp > array[low]){
+                array[move_index] = array[low];
+                array[low] = temp;
+            }
+       }
+
+       quick(array,low_index,low - 1);
+       quick(array,low + 1,high_index);
     }
 
     public static void main(String[] args) {
-        int[] array = DataUtil.getRandomArray(20);
-        System.out.println("源数组--->"+ JSON.toJSONString(array));
-        quick(array,0,array.length - 1);
-        System.out.println("排序数组--->"+ JSON.toJSONString(array));
+        try {
+            int[] array = DataUtil.getRandomArray(20);
+            System.out.println("源数组--->" + JSON.toJSONString(array));
+            quick(array, 0, array.length - 1);
+            System.out.println("排序数组--->" + JSON.toJSONString(array));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
