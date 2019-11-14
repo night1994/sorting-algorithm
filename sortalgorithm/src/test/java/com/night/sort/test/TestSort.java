@@ -1,10 +1,7 @@
 package com.night.sort.test;
 
 import com.alibaba.fastjson.JSON;
-import com.night.sort.algorithm.BaseSort;
-import com.night.sort.algorithm.BubbleSort;
-import com.night.sort.algorithm.QuickSort;
-import com.night.sort.algorithm.SelectSort;
+import com.night.sort.algorithm.*;
 import com.night.sort.util.DataUtil;
 import org.junit.Test;
 
@@ -24,7 +21,9 @@ public class TestSort {
         //快速
 //        baseSort = new QuickSort();
         //选择
-        baseSort = new SelectSort();
+//        baseSort = new SelectSort();
+        //插入
+        baseSort = new InsertSort();
         int[] array = DataUtil.getRandomArray(20);
         System.out.println("源数组--->"+ JSON.toJSONString(array));
         baseSort.sort(array);
