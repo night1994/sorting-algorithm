@@ -10,10 +10,11 @@ import com.night.sort.util.DataUtil;
  * 冒泡排序
  * 依次比较相邻的两个数，将比较小的数放在前面，比较大的数放在后面。
  */
-public class BubbleSort {
+public class BubbleSort implements BaseSort {
 
-    public static int[] bubble(int[] array){
+    public  int[] sort(int[] array){
 
+        System.out.println("冒泡排序");
         int temp;
         for (int i = array.length - 1; i >= 0;i--){
 
@@ -29,10 +30,4 @@ public class BubbleSort {
         return array;
     }
 
-    public static void main(String[] args) {
-        int[] array = DataUtil.getRandomArray(20);
-        System.out.println("源数组--->"+ JSON.toJSONString(array));
-        bubble(array);
-        System.out.println("排序数组--->"+ JSON.toJSONString(array));
-    }
 }

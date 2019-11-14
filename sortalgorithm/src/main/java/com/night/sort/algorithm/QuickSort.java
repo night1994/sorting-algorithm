@@ -7,11 +7,12 @@ import com.night.sort.util.DataUtil;
  * @author night
  * @version 1.1.0
  * @Date 2019/11/13 14:54
+ * 快速排序
  */
-public class QuickSort {
+public class QuickSort implements BaseSort {
 
 
-    public static void quick(int[] array, int low, int high) {
+    public  void quick(int[] array, int low, int high) {
 
         //起始位置与终止位置 一致  停止
        if(low >= high){
@@ -53,14 +54,9 @@ public class QuickSort {
        quick(array,low + 1,high_index);
     }
 
-    public static void main(String[] args) {
-        try {
-            int[] array = DataUtil.getRandomArray(20);
-            System.out.println("源数组--->" + JSON.toJSONString(array));
-            quick(array, 0, array.length - 1);
-            System.out.println("排序数组--->" + JSON.toJSONString(array));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public int[] sort(int[] array) {
+        System.out.println("快速排序");
+        quick(array,0,array.length - 1);
+        return array;
     }
 }
